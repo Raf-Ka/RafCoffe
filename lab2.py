@@ -9,7 +9,6 @@ class Student(pruverka):
         self.group = group
 
     def _calculate_scholarship(self):
-        """Захищений метод для розрахунку стипендії"""
         if self.average_grade is None:
             return 0
         if self.average_grade >= 4.5:
@@ -19,22 +18,26 @@ class Student(pruverka):
         return 0
 
     def __check_attendance(self):
-        """Приватний метод для перевірки відвідуваності"""
         if self.group is None:
             return "Невідома група"
         return f"Студент групи {self.group}"
 
     def get_student_info(self):
-        """Публічний метод для отримання інформації про студента"""
         scholarship = self._calculate_scholarship()
         attendance = self.__check_attendance()
+        course = self.calculate_course()
+        course_info = course if course is not None else "Невідомо"
         return {
             "Ім'я": self.first_name,
             "Прізвище": self.last_name,
-            "Курс": self.calculate_course(),
+            "Рік народження": self.birth_year,
+            "Курс": course_info,
             "Середній бал": self.average_grade,
             "Спеціальність": self.specialty,
             "Група": self.group,
             "Стипендія": scholarship,
             "Статус відвідування": attendance
-        } 
+        }
+
+    def get_names_list(self, students):
+        return [f"{s.first_name} {s.last_name}" for s in students if s.first_name and s.last_name]
