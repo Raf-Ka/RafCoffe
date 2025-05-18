@@ -14,7 +14,6 @@ class Raf:
         if self.manual_course is not None and 1 <= self.manual_course <= 4:
             return self.manual_course
 
-        # Розрахунок курсу за віком (приблизно з 16 років починається навчання)
         if age == 16:
             return 1
         elif age == 17:
@@ -31,14 +30,12 @@ class Raf:
         return [f"{student.name or 'Імʼя невідоме'} {student.surname or 'Прізвище невідоме'}" for student in students]
 
 
-# Тестові об'єкти
 student1 = Raf("Діма", "Поліщук", 2008)
 student2 = Raf("Дімон", None, 2000)
 student3 = Raf("Дмітрій", "Поляков", 2007, 2)
 
 students = [student1, student2, student3]
 
-# Вивід
 names_list = Raf.get_names_list(students)
 print("Список імен:", names_list)
 
