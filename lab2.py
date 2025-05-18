@@ -36,7 +36,6 @@ class Onl_Raf(Raf):
         return basic_info + platform_info + location_info
 
 
-# Створення об'єктів
 Student1 = Raf("Діма", "Поліщук", 2008)
 Student2 = Raf("Дімон", None, 2000)
 Student3 = Raf("Дмітрій", "Поляков", 2007, 2)
@@ -44,11 +43,9 @@ Student3 = Raf("Дмітрій", "Поляков", 2007, 2)
 Student4 = Onl_Raf("Діма", "Панчук", 2005, 3, "Zoom", False, "ПК")
 Student5 = Onl_Raf("Дімон", "Поліщук", 2008, 3, "Google Meet", True, "Ноутбук")
 
-# Список студентів
 Students = [Student1, Student2, Student3, Student4, Student5]
 Names_list = Raf.get_names_list(Students)
 
-# Виведення результатів
 print("Список імен:")
 print(Names_list)
 print()
