@@ -5,14 +5,15 @@ class Raf:
         self.birth_year = birth_year
         self.manual_course = manual_course
 
-    def college_year_calc(self, current_year=2024):
+    def college_year_calc(self):
+        if self.manual_course is not None and 1 <= self.manual_course <= 4:
+            return self.manual_course
+
         if self.birth_year is None:
             return "невідомо"
 
+        current_year = 2025
         age = current_year - self.birth_year
-
-        if self.manual_course is not None and 1 <= self.manual_course <= 4:
-            return self.manual_course
 
         if age == 16:
             return 1
@@ -25,19 +26,20 @@ class Raf:
         else:
             return "невідомо"
 
-    @staticmethod
-    def get_names_list(students):
+    def get_names_list(self, students):
         return [f"{student.name or 'Імʼя невідоме'} {student.surname or 'Прізвище невідоме'}" for student in students]
 
 
-student1 = Raf("Діма", "Поліщук", 2008)
-student2 = Raf("Дімон", None, 2000)
-student3 = Raf("Дмітрій", "Поляков", 2007, 2)
+Student1 = Denis("Діма", "Поліщук", 2008)
+Student2 = Denis("Дімон", None, 2000)
+Student3 = Denis("Дмітрій", "Поляков", 2007, 2)
 
-students = [student1, student2, student3]
+Students = [Student1, Student2]
+Names_list = Student1.get_names_list(Students)
 
-names_list = Raf.get_names_list(students)
-print("Список імен:", names_list)
+print("Список імен:", Names_list)
+print(*vars(Student1).values())
 
-for s in students:
-    print(f"Студент {s.name or 'Невідомо'} {s.surname or ''} знаходиться на {s.college_year_calc()} курсі.")
+print(f"Студент {Student1.name} {Student1.surname} знаходиться на {Student1.college_year_calc()} курсі.")
+print(f"Студент {Student2.name} {Student2.surname} знаходиться на {Student2.college_year_calc()} курсі.")
+print(f"Студент {Student3.name} {Student3.surname} знаходиться на {Student3.college_year_calc()} курсі.")
