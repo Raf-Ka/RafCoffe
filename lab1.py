@@ -30,9 +30,9 @@ class Raf:
         return [f"{student.name or 'Імʼя невідоме'} {student.surname or 'Прізвище невідоме'}" for student in students]
 
 
-Student1 = Denis("Діма", "Поліщук", 2008)
-Student2 = Denis("Дімон", None, 2000)
-Student3 = Denis("Дмітрій", "Поляков", 2007, 2)
+Student1 = Raf("Діма", "Поліщук", 2008)
+Student2 = Raf("Дімон", None, 2000)
+Student3 = Raf("Дмітрій", "Поляков", 2007, 2)
 
 Students = [Student1, Student2]
 Names_list = Student1.get_names_list(Students)
