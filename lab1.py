@@ -1,21 +1,46 @@
-class pruverka:
-    def __init__(self, first_name=None, last_name=None, birth_year=None):
-        self.first_name = first_name
-        self.last_name = last_name
+class Raf:
+    def __init__(self, name=None, surname=None, birth_year=None, manual_course=None):
+        self.name = name
+        self.surname = surname
         self.birth_year = birth_year
+        self.manual_course = manual_course
 
-    def calculate_course(self):
+    def college_year_calc(self, current_year=2024):
         if self.birth_year is None:
-            return None
-        current_year = 2024
-        age = current_year - self.birth_year
-        if age == 16:
-            return 1  # 1 курс
-        elif age == 17:
-            return 2  # 2 курс
-        return None
+            return "невідомо"
 
-    def create_name_list(self):
-        if self.first_name is None or self.last_name is None:
-            return []
-        return [self.first_name, self.last_name] 
+        age = current_year - self.birth_year
+
+        if self.manual_course is not None and 1 <= self.manual_course <= 4:
+            return self.manual_course
+
+        # Розрахунок курсу за віком (приблизно з 16 років починається навчання)
+        if age == 16:
+            return 1
+        elif age == 17:
+            return 2
+        elif age == 18:
+            return 3
+        elif age == 19:
+            return 4
+        else:
+            return "невідомо"
+
+    @staticmethod
+    def get_names_list(students):
+        return [f"{student.name or 'Імʼя невідоме'} {student.surname or 'Прізвище невідоме'}" for student in students]
+
+
+# Тестові об'єкти
+student1 = Raf("Діма", "Поліщук", 2008)
+student2 = Raf("Дімон", None, 2000)
+student3 = Raf("Дмітрій", "Поляков", 2007, 2)
+
+students = [student1, student2, student3]
+
+# Вивід
+names_list = Raf.get_names_list(students)
+print("Список імен:", names_list)
+
+for s in students:
+    print(f"Студент {s.name or 'Невідомо'} {s.surname or ''} знаходиться на {s.college_year_calc()} курсі.")
